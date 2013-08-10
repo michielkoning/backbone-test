@@ -1,0 +1,16 @@
+@mixin clearfix {
+	&:before,
+	&:after {
+		content: " ";
+		display: table;
+	}
+	&:after {
+		clear: both;
+	}
+}
+
+@mixin line {
+	@include background-image(linear-gradient(left, #eee 0%, #eee 80%, #fff 80%, #fff 100%));
+	background-size:8px 1px;
+	height: 1px;
+}
