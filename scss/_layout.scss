@@ -1,0 +1,166 @@
+@mixin clearfix {
+	*zoom: 1;
+	&:before,
+	&:after {
+		content: " ";
+		display: table;
+	}
+	&:after {
+		clear: both;
+	}
+}
+
+body {
+	font-family: 'Open Sans', sans-serif;
+	font-size: 16px;
+	line-height: 24px;
+	color: #303030;
+	@include hyphens(auto);
+	-webkit-text-size-adjust: 100%;
+}
+
+.center {
+	max-width: 960px;
+	padding: 20px;
+	margin: 0 auto;
+}
+
+strong {
+	font-weight: bold;
+}
+
+a {
+	color: #303030;
+	text-decoration: underline;
+}
+
+p {
+	padding: 5px 0;
+}
+
+li {
+	padding: 10px 0;
+}
+
+h1 {
+	font-size: 32px;
+	line-height: 48px;
+	margin: 20px 0;
+}
+
+h2 {
+	font-size: 20px;
+	line-height: 24px;
+	font-weight: bold;
+	margin-bottom: 3px;
+}
+h3 {
+	font-weight: bold;
+	margin-bottom: 5px;
+}
+
+.services {
+	font-style: italic;
+}
+
+.header {
+	background: #eee;
+}
+
+.sort-block,
+.filter-block {
+	width: 50%;
+	float: left;
+}
+
+#filter {
+	@include clearfix;
+}
+
+.filter-block:not(#foo) {
+	label {
+		display: block;
+		position: relative;
+		padding-left: 25px;
+		margin-bottom: 5px;
+		&:last-child {
+			margin-bottom: 0;
+		}
+		&:before {
+			display: block;
+			content: '';
+			position: absolute;
+			left: 0;
+			top: 3px;
+			width: 16px;
+			height: 16px;
+			background: #fff;
+			border: 1px solid #333;
+			@include border-radius(2px);
+		}
+	}
+	input {
+		position: absolute;
+		left: -9999px;
+		&:checked + label:after {
+			display: block;
+			content: '';
+			position: absolute;
+			left: 3px;
+			top: 6px;
+			width: 12px;
+			height: 12px;
+			background: #333;
+			@include border-radius(1px);
+		}
+	}
+}
+
+select {
+	@include border-radius(3px);
+	@include box-sizing(border-box);
+	-webkit-appearance: none;
+	background: #fff;
+	border: 1px solid #333;
+	width: 100%;
+	color: #303030;
+	font-size: 16px;
+	height: 24px;
+	padding: 0 4px;
+}
+
+.select-block {
+	@include box-sizing(border-box);
+	position: relative;
+	&:before {
+		@include box-sizing(border-box);
+		@include border-radius(0 3px 3px 0);
+		border-top: 1px solid #333;
+		border-right: 1px solid #333;
+		border-bottom: 1px solid #333;
+		position: absolute;
+		background: #fff;
+		right: 0px;
+		width: 22px;
+		height: 24px;
+		bottom: 0px;
+		content: '';
+		pointer-events: none;
+	}
+	&:after {
+		position: absolute;
+		pointer-events: none;
+		right: 5px;
+		width: 0px;
+		height: 0px;
+		top: 8px;
+		content: '';
+		border-top: 10px solid #333;
+		border-left: 7px solid transparent;
+		border-right: 7px solid transparent;
+	}
+}
+
+label {
+	cursor: pointer;
+}
