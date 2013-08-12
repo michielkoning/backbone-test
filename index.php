@@ -1,8 +1,9 @@
+
 <!DOCTYPE HTML>
 <html>
 <head>
 
-	<title>Backbone test</title>
+	<title>Lukkien Portfolio</title>
 	<link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 	<link rel="stylesheet" href="css/global.css?v=2">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,7 +22,6 @@
 
 	</div>
 
-
 </header>
 
 
@@ -29,7 +29,7 @@
 
 	<div class="center">
 
-		<h1>Backbone test</h1>
+		<h1>Portfolio van Lukkien</h1>
 
 		<div id="portfolio"></div>
 
@@ -44,20 +44,20 @@
 
 		<h3>Filter op service</h3>
 
-		<input type="checkbox" class="filter" value="interactive" id="interactive">
+		<input type="checkbox" class="filter" value="interactive" id="interactive" <%=(filterValue.indexOf('interactive') > -1) ? 'checked="checked"' : ""%>>
 		<label for="interactive">Interactive</label>
 
-		<input type="checkbox" class="filter" value="photography" id="photography">
+		<input type="checkbox" class="filter" value="photography" id="photography" <%=(filterValue.indexOf('photography') > -1) ? 'checked="checked"' : ""%>>
 		<label for="photography">Photography</label>
 
-		<input type="checkbox" class="filter" value="audiovisual" id="audiovisual">
+		<input type="checkbox" class="filter" value="audiovisual" id="audiovisual" <%=(filterValue.indexOf('audiovisual') > -1) ? 'checked="checked"' : ""%>>
 		<label for="audiovisual">Audiovisual</label>
 
-		<input type="checkbox" class="filter" value="3d" id="3d">
+		<input type="checkbox" class="filter" value="3d" id="3d" <%=(filterValue.indexOf('3d') > -1) ? 'checked="checked"' : ""%>>
 		<label for="3d">3D</label>
 
-		<input type="checkbox" class="filter" value="graphic design" id="graphic design">
-		<label for="graphic design">Graphic design</label>
+		<input type="checkbox" class="filter" value="graphic design" id="graphic-design" <%=(filterValue.indexOf('graphic design') > -1) ? 'checked="checked"' : ""%>>
+		<label for="graphic-design">Graphic design</label>
 
 	</div>
 
@@ -68,10 +68,10 @@
 		<div class="select-block">
 
 			<select id="sort">
-				<option value="order">Volgorde laag-hoog</option>
-				<option value="order/desc">Volgorde hoog-laag</option>
-				<option value="label">Naam a-z</option>
-				<option value="label/desc">Naam z-a</option>
+				<option value="order" <%=(sortValue == 'order') ? 'selected="selected"' : ""%>>Volgorde laag-hoog</option>
+				<option value="order/desc" <%=(sortValue == 'order/desc') ? 'selected="selected"' : ""%>>Volgorde hoog-laag</option>
+				<option value="label" <%=(sortValue == 'label') ? 'selected="selected"' : ""%>>Naam a-z</option>
+				<option value="label/desc" <%=(sortValue == 'label/desc') ? 'selected="selected"' : ""%>>Naam z-a</option>
 			</select>
 
 		</div>

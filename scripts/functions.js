@@ -44,7 +44,6 @@ $(function(){
 					for (var i = 0; i < data.get("services").length; i++) {
 
 						var filterItem = data.get("services")[i].toString();
-						console.log(filterItem)
 
 						if (filterItem) {
 							if (filterItem.toLowerCase() === filter) {
@@ -73,7 +72,7 @@ $(function(){
 	//Views
 	var PortfolioView = Backbone.View.extend({
 		tagName:'ul',
-		render: function(eventName) {
+		render: function() {
 			_.each(this.model.models, function(item){
 				$(this.el).append(
 					new PortfolioItemView({
@@ -89,7 +88,7 @@ $(function(){
 	var PortfolioItemView = Backbone.View.extend({
 		tagName:"li",
 		template:_.template($('#template-portfolio').html()),
-		render: function (eventName) {
+		render: function () {
 			$(this.el).html(this.template(this.model.toJSON()));
 			return this;
 		}
@@ -99,8 +98,23 @@ $(function(){
 
 		template:_.template($('#template-filter').html()),
 
-		render:function (eventName) {
-			$(this.el).html(this.template());
+		initialize: function (){
+			this.filterValue = '';
+			this.sortKey = '';
+			this.sortOrder = '';
+		},
+
+		render:function () {
+			var sortValue = this.sortKey;
+
+			if (this.sortOrder) {
+				sortValue += "/" + this.sortOrder;
+			}
+
+			$(this.el).html(this.template({
+				sortValue: sortValue,
+				filterValue: this.filterValue
+			}));
 			return this;
 		},
 
@@ -132,11 +146,6 @@ $(function(){
 
 		},
 
-		changeOrder: function (e) {
-			var orderItem = $(e.currentTarget);
-			app.navigate("sort/" + orderItem.val(), true);
-		},
-
 		getSort: function(){
 			var sort = $('#sort').val();
 			return sort;
@@ -165,7 +174,7 @@ $(function(){
 	var AppRouter = Backbone.Router.extend({
 
 		initialize:function () {
-			$('#filter').html(new FilterView().render().el);
+
 			this.portfolio = new Portfolio(portfolioList);
 			this.sortKey = "order";
 			this.sortOrder = "asc";
@@ -182,6 +191,9 @@ $(function(){
 				model: this.portfolio
 			});
 			$('#portfolio').html(this.portfolioView.render().el);
+
+			this.filterView = new FilterView();
+			$('#filter').html(this.filterView.render().el);
 		},
 
 		filter: function (value, sortKey, sortOrder) {
@@ -197,17 +209,32 @@ $(function(){
 			this.portfolioView = new PortfolioView({
 				model: this.portfolio.filterBy(value).sortBy(sortKey, sortOrder)
 			});
-
 			$('#portfolio').html(this.portfolioView.render().el);
+
+			this.filterView = new FilterView();
+			this.filterView.sortOrder = sortOrder;
+			this.filterView.sortKey = sortKey;
+			this.filterView.filterValue = value;
+
+			$('#filter').html(this.filterView.render().el);
 		},
 
 		sort: function (sortKey, sortOrder) {
 
+			if (!sortOrder) {
+				sortOrder = "";
+			}
+
 			this.portfolioView = new PortfolioView({
 				model: this.portfolio.sortBy(sortKey, sortOrder)
 			});
-
 			$('#portfolio').html(this.portfolioView.render().el);
+
+			this.filterView = new FilterView();
+			this.filterView.sortOrder = sortOrder;
+			this.filterView.sortKey = sortKey;
+
+			$('#filter').html(this.filterView.render().el);
 
 		}
 	});
