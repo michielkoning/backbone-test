@@ -5,7 +5,7 @@
 
 	<title>Backbone test</title>
 	<link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-	<link rel="stylesheet" href="css/global.css?v=2">
+	<link rel="stylesheet" href="/css/global.css?v=2">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<link rel="shortcut icon" href="/favicon.ico">
@@ -75,6 +75,7 @@
 			</select>
 
 		</div>
+
 	</div>
 
 </script>
@@ -84,7 +85,7 @@
 
 	<div class="services">
 		<% _.each(services, function (item, i) { %>
-			<%if (i > 0 && services.length > 0) {%>/<% } %>
+			<%if (i > 0) {%>/<% } %>
 			<%=item%>
 		<% }); %>
 	</div>
@@ -96,8 +97,8 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.1/underscore-min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone-min.js"></script>
-<script src="scripts/data.js?v=2"></script>
-<script src="scripts/functions.js?v=2"></script>
+<script src="/scripts/data.js?v=2"></script>
+<script src="/scripts/functions.js?v=2"></script>
 
 </body>
 </html>

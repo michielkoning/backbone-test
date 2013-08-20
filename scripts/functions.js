@@ -23,7 +23,7 @@ $(function(){
 			if (filter.indexOf('|') > 0) {
 
 				//array maken van de value
-				var arrFilter = filter.split('|');
+				var arrFilter = filter.split(',');
 
 				filtered = this.filter(function(data) {
 					for (var i = 0; i < data.get("services").length; i++) {
@@ -159,7 +159,7 @@ $(function(){
 					arrFilter.push($(this).val());
 				});
 
-				return arrFilter.join('|');
+				return arrFilter.join(',');
 
 			} else {
 
@@ -240,6 +240,8 @@ $(function(){
 	});
 
 	var app = new AppRouter();
-	Backbone.history.start();
+	Backbone.history.start({
+		pushState: true
+	});
 
 });
