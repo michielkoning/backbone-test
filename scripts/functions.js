@@ -20,7 +20,7 @@ $(function(){
 			var filtered;
 
 			//kijken of er gefilterd moet worden op meerdere waarden
-			if (filter.indexOf('|') > 0) {
+			if (filter.indexOf(',') > 0) {
 
 				//array maken van de value
 				var arrFilter = filter.split(',');
